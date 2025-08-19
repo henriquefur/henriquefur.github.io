@@ -43,7 +43,7 @@ footer p {
 .section {
   max-width: 700px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px 20px;
 }
 
 .section h2 {
@@ -60,12 +60,20 @@ footer p {
   text-align: left;
 }
 
+.section + .section {
+  border-top: 1px solid #eaeaea;
+}
+
 .project {
   display: flex;
   align-items: flex-start;
   margin-top: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   flex-direction: column;
+  border: 1px solid #efefef;
+  border-radius: 12px;
+  padding: 12px;
+  transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
 .project-image {
@@ -73,13 +81,54 @@ footer p {
   height: 200px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 10px;
 }
 
 .project-text {
   width: 100%;
   /* Text takes full width on mobile */
+  display: block;
+  color: #444;
+}
+
+.project-text .header {
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 2px 0 4px;
+  letter-spacing: 0.15px;
+  color: #222;
+}
+
+@supports (text-wrap: balance) {
+  .project-text .header { text-wrap: balance; }
+}
+
+.project-text p {
+  margin: 0;
+  color: #555;
+  font-size: 0.96rem;
+  line-height: 1.42;
+}
+
+.project.clickable {
+  cursor: pointer;
+}
+
+.project.clickable:hover,
+.project.clickable:focus-within {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-color: #e2e2e2;
+  background-color: #fff;
+}
+
+/* Suppress hover/focus-within visuals when returning to tab until mouse moves */
+body.suppress-hover .project.clickable:hover,
+body.suppress-hover .project.clickable:focus-within {
+  box-shadow: none;
+  border-color: #efefef;
+  background-color: transparent;
 }
 
 @media (min-width: 769px) {
@@ -94,19 +143,29 @@ footer p {
   }
 
   .project-image {
-    width: 70%;
+    width: 66%;
   }
 
   .project-text {
-    width: 30%;
+    width: 34%;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
   }
 }
 
 a {
   color: #666;
-}
+  }
 
 a:visited {
   color: #551A8B;
+}
+
+/* Improve focus outline for accessibility */
+.project[tabindex="0"]:focus {
+  outline: 2px solid #bbb;
+  outline-offset: 2px;
 }
