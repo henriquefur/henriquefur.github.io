@@ -60,7 +60,7 @@ footer p {
   text-align: left;
 }
 
-.section + .section {
+.section+.section {
   border-top: 1px solid #eaeaea;
 }
 
@@ -87,7 +87,6 @@ footer p {
 
 .project-text {
   width: 100%;
-  /* Text takes full width on mobile */
   display: block;
   color: #444;
 }
@@ -102,14 +101,15 @@ footer p {
 }
 
 @supports (text-wrap: balance) {
-  .project-text .header { text-wrap: balance; }
+  .project-text .header {
+    text-wrap: balance;
+  }
 }
 
 .project-text p {
   margin: 0;
   color: #555;
   font-size: 0.96rem;
-  line-height: 1.42;
 }
 
 .project.clickable {
@@ -144,6 +144,7 @@ body.suppress-hover .project.clickable:focus-within {
 
   .project-image {
     width: 66%;
+    margin-bottom: 0;
   }
 
   .project-text {
@@ -158,13 +159,12 @@ body.suppress-hover .project.clickable:focus-within {
 
 a {
   color: #666;
-  }
+}
 
 a:visited {
   color: #551A8B;
 }
 
-/* Improve focus outline for accessibility */
 .project[tabindex="0"]:focus {
   outline: 2px solid #bbb;
   outline-offset: 2px;
